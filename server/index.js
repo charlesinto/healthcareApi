@@ -8,6 +8,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 
 import authRoute from "./routes/authRoute";
+import recordRoute from "./routes/recordRoute";
 
 const app = express()
 
@@ -56,12 +57,14 @@ app.use(bodyParser.json());
 //  */
 // //app.get('/customers', (req, res) => res.send({message:'hello world'}))
 
-// app.use('/api/v1/auth', authRoute)
+app.use('/api/v1/auth', authRoute)
 
-// const port = process.env.PORT || 3000;
+app.use('/api/v1/records',recordRoute)
 
-app.listen(3000, () => {
-    console.log(`Server is listening on port ${3000}`)
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`)
 })
 
 export default app;
