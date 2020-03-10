@@ -23,7 +23,7 @@ else if (process.env.NODE_ENV === 'TEST'){
 else if(process.env.NODE_ENV === 'PRODUCTION'){
     pool = new Pool({
         connectionLimit : 10,
-        database : process.env.DATABASE_URL
+        connectionString : process.env.DATABASE_URL
       });
 }
 
