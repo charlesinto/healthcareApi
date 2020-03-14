@@ -16,6 +16,8 @@ export const loginWithEmailAndPassword = async (req, res) => {
 export const signUpUser = async (req, res) => {
     try{
         const {firstName, lastName, phoneNumber, roleId, password, emailAddress} = req.body;
+        const result = await executeQuery('select * from users where emailAddress =$', [emailAddress]);
+        if(result.length > 0) return res.status(400).send({message:'User with the Email alredy exists'})
         await executeQuery(`insert into users(firstname, lastname, phonenumber, roleid, password, emailaddress)
         values ($1,$2, $3,$4,$5,$6)` , [firstName, lastName, phoneNumber, roleId, generatePasswordHash(password), emailAddress])
         res.status(201).send({message:'User created successfully'});
