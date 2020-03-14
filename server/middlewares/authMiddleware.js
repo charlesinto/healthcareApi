@@ -1,4 +1,4 @@
-import { loginSchema } from "../model"
+import { loginSchema, userSchema } from "../model"
 import jwt from "jsonwebtoken";
 
 export const valiadateEmailAndPassword = (req, res, next) => {
@@ -9,6 +9,12 @@ export const valiadateEmailAndPassword = (req, res, next) => {
             validationMessage: error
         })
     }
+    next()
+}
+
+export const validateUserParams = (req, res, next) => {
+    const {error} = userSchema.validate(req.body);
+    if(error) return res.status(400).send({message: 'Missing fields', error})
     next()
 }
 

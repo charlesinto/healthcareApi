@@ -60,3 +60,12 @@ export const stageOneRecordSchema = Joi.object({
    examinationStatus: Joi.string().allow('', null),
    treatmentCompleted: Joi.string().allow('', null)
    })
+
+   export const userSchema = Joi.object({
+    firstName: Joi.string().required(),
+     lastName: Joi.string().required(), 
+     phoneNumber: Joi.number().required(), 
+     roleId: Joi.number().required(), 
+     password: Joi.string().required(), 
+     emailAddress: Joi.string().email().required()
+   })
