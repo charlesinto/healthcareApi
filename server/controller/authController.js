@@ -26,3 +26,21 @@ export const signUpUser = async (req, res) => {
     }
 }
 
+export const getUsers = async (req, res) => {
+    try{
+        const result = await executeQuery('select * from users')
+        res.status(200).send({message:'Users fetched successfully', result})
+    }catch(error){
+        res.status(500).send({message:'some erros were encountered', error})
+    }
+}
+
+export const getRoles = async (req, res) => {
+    try{
+        const result = await executeQuery('select * from roles')
+        res.status(200).send({message:'Roles fetched successfully', result})
+    }catch(error){
+        res.status(500).send({message:'some erros were encountered', error})
+    }
+}
+
